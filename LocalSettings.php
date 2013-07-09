@@ -134,6 +134,7 @@ $wgJobRunRate = 0;	# Lower probability of running through queue; replace later w
 
 
 # Lets add our private config!
+require_once("/var/mwconfig/private.php");
 
 ## Shared memory settings
 #$wgMainCacheType = CACHE_MEMCACHED;
