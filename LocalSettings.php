@@ -27,21 +27,6 @@ if ( $IDIOT_BRIGADE ) {
 $wgMainCacheType = CACHE_MEMCACHED;
 $wgMemCachedServers = array( "127.0.0.1:11211" );
 
-require_once("$IP/extensions/ConfirmEdit/ConfirmEdit.php");
-require_once("$IP/extensions/ConfirmEdit/FancyCaptcha.php");
-$wgCaptchaClass = 'FancyCaptcha';
-$wgGroupPermissions['*']['skipcaptcha'] = false;
-$wgGroupPermissions['user']['skipcaptcha'] = false;
-$wgGroupPermissions['autoconfirmed']['skipcaptcha'] = true;
-$wgGroupPermissions['bot']['skipcaptcha'] = true; // registered bots
-$wgGroupPermissions['sysop']['skipcaptcha'] = true;
-$wgCaptchaTriggers['edit']          = false;
-$wgCaptchaTriggers['create']        = false;
-$wgCaptchaTriggers['addurl']        = true;
-$wgCaptchaTriggers['createaccount'] = true;
-$wgCaptchaTriggers['badlogin']      = true;
-
-
 
 # Should this be somewhere else?
 # Parse domain and set project variables
@@ -226,6 +211,20 @@ $wgDisableHardRedirects = true;
 $wgNamespacesWithSubpages = array_fill(0, 200, true);
 
 # Common extensions
+require_once("$IP/extensions/ConfirmEdit/ConfirmEdit.php");
+require_once("$IP/extensions/ConfirmEdit/FancyCaptcha.php");
+$wgCaptchaClass = 'FancyCaptcha';
+$wgGroupPermissions['*']['skipcaptcha'] = false;
+$wgGroupPermissions['user']['skipcaptcha'] = false;
+$wgGroupPermissions['autoconfirmed']['skipcaptcha'] = true;
+$wgGroupPermissions['bot']['skipcaptcha'] = true; // registered bots
+$wgGroupPermissions['sysop']['skipcaptcha'] = true;
+$wgCaptchaTriggers['edit']          = false;
+$wgCaptchaTriggers['create']        = false;
+$wgCaptchaTriggers['addurl']        = true;
+$wgCaptchaTriggers['createaccount'] = true;
+$wgCaptchaTriggers['badlogin']      = true;
+
 require_once( "$IP/extensions/AbuseFilter/AbuseFilter.php" );
 	$wgGroupPermissions['*']['abusefilter-log-detail'] = true;
 	$wgGroupPermissions['*']['abusefilter-view'] = true;
@@ -282,6 +281,7 @@ require_once( "$IP/extensions/ApiSandbox/ApiSandbox.php" );
 require_once( "$IP/extensions/AssertEdit/AssertEdit.php" );
 require_once( "$IP/extensions/Disambiguator/Disambiguator.php" );
 require_once( "$IP/extensions/TemplateSandbox/TemplateSandbox.php" );
+require_once( "$IP/extensions/SimpleAntiSpam/SimpleAntiSpam.php" );
 #require_once( "$IP/extensions/MultiUpload/MultiUpload.php" );
 
 /*
@@ -313,10 +313,6 @@ if( $IDIOT_BRIGADE ) {
 
 # Tell robots to go away.
 # $wgDefaultRobotPolicy = 'noindex,nofollow';
-
-#Anti-spam extensions
-#Nuke,AbuseFilter,AntiSpoof installed above
-require_once( "$IP/extensions/SimpleAntiSpam/SimpleAntiSpam.php" );
 
 #captcha shit
 $wgCaptchaDirectory = "/var/captcha";
