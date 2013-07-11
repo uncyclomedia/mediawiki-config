@@ -543,15 +543,12 @@ if ( in_array( "$code.$project", array_keys( $p_use_ga ) ) ) {
 
 
 if ( "$code.$project" == "test.uncyclopedia" ) {
-//	require_once( "$IP/extensions/Scribunto/Scribunto.php" );
-//	$wgScribuntoDefaultEngine = 'luastandalone';
         error_reporting( -1 );
         ini_set( 'display_errors', 1 );
         $IDIOT_BRIGADE = true;
 }
 
-#GOOGLE ANAYLITICS
-# https://www.mediawiki.org/wiki/User:Dantman/Analytics_integration
+#Google Analytics
 
 $p_use_ga = array(
 	"en.uncyclopedia" => "UA-38042228-1",
@@ -567,10 +564,8 @@ if ( in_array( "$code.$project", array_keys( $p_use_ga ) ) ) {
 
 if ( "$code.$project" == "en.uncyclopedia" || "$code.$project" == "test.uncyclopedia" ) {
 	require_once("$IP/extensions/GlobalBlocking/GlobalBlocking.php");
+	unset($wgGroupPermissions['steward']); // Silly WMF
+	$wgGroupPermissions['sysadmin']['globalblock'] = true;
+	$wgGroupPermissions['sysadmin']['globalunblock'] = true;
 }
 
-//$wgGroupPermissions['steward']['globalblock'] = false;
-//$wgGroupPermissions['steward']['globalunblock'] = false;
-unset($wgGroupPermissions['steward']); // Silly WMF
-$wgGroupPermissions['sysadmin']['globalblock'] = true;
-$wgGroupPermissions['sysadmin']['globalunblock'] = true;
