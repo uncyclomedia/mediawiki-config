@@ -1,0 +1,9 @@
+language: php
+php:
+  - 5.5
+  - 5.4
+script: php -l *.php
+notifications:
+  email:
+    on_success: change
+    on_failure: always
