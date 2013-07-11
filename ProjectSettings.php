@@ -555,20 +555,15 @@ $wgScribuntoUseCodeEditor = true;
 #GOOGLE ANAYLITICS
 # https://www.mediawiki.org/wiki/User:Dantman/Analytics_integration
 
-$enableGA = false; #default
-$wgGoogleAnalyticsAccount = ""; #ummm
+$p_use_ga = array(
+	"en.uncycopedia" => "UA-38042228-1"
+);
 
-#exempt non-humans from analytics
-$wgGroupPermissions['*']['noanalytics'] = false;
-$wgGroupPermissions['bot']['noanalytics'] = true;
-
-if ( "$code.$project" == "en.uncyclopedia" ) {
-	$wgGoogleAnalyticsAccount = "UA-38042228-1";
-	$enableGA = false;
-}
-if ( "$code.$project" == "en.uncyclopedia" ) {
+if ( in_array( "$code.$project", array_keys( $p_use_ga ) ) ) {
 	require_once( "$IP/extensions/googleAnalytics/googleAnalytics.php" );
-	//This should be fixed to easily work for other projects
+	$wgGoogleAnalyticsAccount = $p_use_ga["$code.$project"];
+	$wgGoogleAnalyticsIgnoreSysops = false;
+	$wgGroupPermissions['bot']['noanalytics'] = true;
 }
 
 if ( "$code.$project" == "en.uncyclopedia" || "$code.$project" == "test.uncyclopedia" ) {
