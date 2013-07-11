@@ -213,17 +213,17 @@ $wgNamespacesWithSubpages = array_fill(0, 200, true);
 # Common extensions
 require_once("$IP/extensions/ConfirmEdit/ConfirmEdit.php");
 require_once("$IP/extensions/ConfirmEdit/FancyCaptcha.php");
-$wgCaptchaClass = 'FancyCaptcha';
-$wgGroupPermissions['*']['skipcaptcha'] = false;
-$wgGroupPermissions['user']['skipcaptcha'] = false;
-$wgGroupPermissions['autoconfirmed']['skipcaptcha'] = true;
-$wgGroupPermissions['bot']['skipcaptcha'] = true; // registered bots
-$wgGroupPermissions['sysop']['skipcaptcha'] = true;
-$wgCaptchaTriggers['edit']          = false;
-$wgCaptchaTriggers['create']        = false;
-$wgCaptchaTriggers['addurl']        = true;
-$wgCaptchaTriggers['createaccount'] = true;
-$wgCaptchaTriggers['badlogin']      = true;
+	$wgCaptchaClass = 'FancyCaptcha';
+	$wgGroupPermissions['*']['skipcaptcha'] = false;
+	$wgGroupPermissions['user']['skipcaptcha'] = false;
+	$wgGroupPermissions['autoconfirmed']['skipcaptcha'] = true;
+	$wgGroupPermissions['bot']['skipcaptcha'] = true; // registered bots
+	$wgGroupPermissions['sysop']['skipcaptcha'] = true;
+	$wgCaptchaTriggers['edit']          = false;
+	$wgCaptchaTriggers['create']        = false;
+	$wgCaptchaTriggers['addurl']        = true;
+	$wgCaptchaTriggers['createaccount'] = true;
+	$wgCaptchaTriggers['badlogin']      = true;
 
 require_once( "$IP/extensions/AbuseFilter/AbuseFilter.php" );
 	$wgGroupPermissions['*']['abusefilter-log-detail'] = true;
