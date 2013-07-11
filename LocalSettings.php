@@ -280,6 +280,7 @@ require_once( "$IP/extensions/YouTube/YouTube.php" );
 require_once( "$IP/extensions/SpamBlacklist/SpamBlacklist.php" );
 require_once( "$IP/extensions/ApiSandbox/ApiSandbox.php" );
 require_once( "$IP/extensions/AssertEdit/AssertEdit.php" );
+require_once( "$IP/extensions/Disambiguator/Disambiguator.php" );
 #require_once( "$IP/extensions/MultiUpload/MultiUpload.php" );
 
 /*
