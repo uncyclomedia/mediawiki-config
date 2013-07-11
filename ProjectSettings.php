@@ -545,6 +545,7 @@ if ( "$code.$project" == "test.uncyclopedia" ) {
 //	$wgScribuntoDefaultEngine = 'luastandalone';
         error_reporting( -1 );
         ini_set( 'display_errors', 1 );
+        $IDIOT_BRIGADE = true;
 }
 
 #Lua EVERYWHERE!
