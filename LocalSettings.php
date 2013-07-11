@@ -253,7 +253,7 @@ require_once( "$IP/extensions/ParserFunctions/ParserFunctions.php" );
 	$wgPFEnableStringFunctions = true;
 require_once( "$IP/extensions/Poem/Poem.php" );
 #require_once( "$IP/extensions/RandomImage/RandomImage.php" );
-require_once( "$IP/extensions_angry/RandomSelection/RandomSelection.php" );
+require_once( "$IP/extensions/RandomSelection/RandomSelection.php" );
 require_once( "$IP/extensions/Renameuser/Renameuser.php" );
 require_once( "$IP/extensions/SyntaxHighlight_GeSHi/SyntaxHighlight_GeSHi.php" );
 	$wgSyntaxHighlightDefaultLang = "javascript";
