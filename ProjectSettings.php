@@ -527,18 +527,21 @@ else if ( "$code.$project" == 'cabal.uncyclomedia' ) {
 
 
 #IRC feed
-if ( "$code.$project" == "en.uncyclopedia" ) {
+
+$p_irc_feed = array(
+	// Project name => channel name
+	"en.uncyclopedia" => "#uncyclopedia-rc-en",
+	"test.uncyclopedia" => "#uncyclopedia-rc-test"
+);
+
+if ( in_array( "$code.$project", array_keys( $p_use_ga ) ) ) {
 	$wgRC2UDPAddress = '127.0.0.1';
 	$wgRC2UDPPort = '33333';
-	$wgRC2UDPPrefix = "#uncyclopedia-rc-en\t";
+	$wgRC2UDPPrefix = $p_use_ga["$code.$project"] . "\t";
 	$wgAbuseFilterNotifications = "udp";
 }
-if ( "$code.$project" == "test.uncyclopedia" ) {
-        $wgRC2UDPAddress = '127.0.0.1';
-        $wgRC2UDPPort = '33333';
-        $wgRC2UDPPrefix = "#uncyclopedia-rc-test\t";
-        $wgAbuseFilterNotifications = "udp";
-}
+
+
 $wgAbuseFilterEmergencyDisableThreshold['default'] = 0.10;
 if ( "$code.$project" == "test.uncyclopedia" ) {
 //	require_once( "$IP/extensions/Scribunto/Scribunto.php" );
