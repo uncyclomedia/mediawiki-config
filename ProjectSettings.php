@@ -538,11 +538,10 @@ if ( in_array( "$code.$project", array_keys( $p_use_ga ) ) ) {
 	$wgRC2UDPAddress = '127.0.0.1';
 	$wgRC2UDPPort = '33333';
 	$wgRC2UDPPrefix = $p_use_ga["$code.$project"] . "\t";
-	$wgAbuseFilterNotifications = "udp";
 }
 
 
-$wgAbuseFilterEmergencyDisableThreshold['default'] = 0.10;
+
 if ( "$code.$project" == "test.uncyclopedia" ) {
 //	require_once( "$IP/extensions/Scribunto/Scribunto.php" );
 //	$wgScribuntoDefaultEngine = 'luastandalone';

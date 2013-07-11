@@ -233,6 +233,8 @@ require_once( "$IP/extensions/AbuseFilter/AbuseFilter.php" );
 	$wgGroupPermissions['sysop']['abusefilter-private'] = true;
 	$wgGroupPermissions['sysop']['abusefilter-modify-restricted'] = true;
 	$wgGroupPermissions['sysop']['abusefilter-revert'] = true;
+	$wgAbuseFilterEmergencyDisableThreshold['default'] = 0.10;
+	$wgAbuseFilterNotifications = "udp";
 require_once( "$IP/extensions/AntiSpoof/AntiSpoof.php" );
 require_once( "$IP/extensions/CategoryTree/CategoryTree.php" );
 require_once( "$IP/extensions/CheckUser/CheckUser.php" );
