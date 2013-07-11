@@ -556,7 +556,7 @@ $wgScribuntoUseCodeEditor = true;
 # https://www.mediawiki.org/wiki/User:Dantman/Analytics_integration
 
 $p_use_ga = array(
-	"en.uncycopedia" => "UA-38042228-1"
+	"en.uncyclopedia" => "UA-38042228-1"
 );
 
 if ( in_array( "$code.$project", array_keys( $p_use_ga ) ) ) {
