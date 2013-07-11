@@ -282,6 +282,11 @@ require_once( "$IP/extensions/AssertEdit/AssertEdit.php" );
 require_once( "$IP/extensions/Disambiguator/Disambiguator.php" );
 require_once( "$IP/extensions/TemplateSandbox/TemplateSandbox.php" );
 require_once( "$IP/extensions/SimpleAntiSpam/SimpleAntiSpam.php" );
+require_once( "$IP/extensions/Scribunto/Scribunto.php" );
+	$wgScribuntoDefaultEngine = 'luastandalone';
+	$wgScribuntoUseGeSHi = true;
+	$wgScribuntoUseCodeEditor = true;
+
 #require_once( "$IP/extensions/MultiUpload/MultiUpload.php" );
 
 /*

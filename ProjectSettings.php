@@ -548,11 +548,6 @@ if ( "$code.$project" == "test.uncyclopedia" ) {
         $IDIOT_BRIGADE = true;
 }
 
-#Lua EVERYWHERE!
-require_once( "$IP/extensions/Scribunto/Scribunto.php" );
-$wgScribuntoDefaultEngine = 'luastandalone';
-$wgScribuntoUseGeSHi = true;
-$wgScribuntoUseCodeEditor = true;
 #GOOGLE ANAYLITICS
 # https://www.mediawiki.org/wiki/User:Dantman/Analytics_integration
 
