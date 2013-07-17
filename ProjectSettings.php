@@ -534,10 +534,10 @@ $p_irc_feed = array(
 	"test.uncyclopedia" => "#uncyclopedia-rc-test"
 );
 
-if ( in_array( "$code.$project", array_keys( $p_use_ga ) ) ) {
+if ( in_array( "$code.$project", array_keys( $p_irc_feed ) ) ) {
 	$wgRC2UDPAddress = '127.0.0.1';
 	$wgRC2UDPPort = '33333';
-	$wgRC2UDPPrefix = $p_use_ga["$code.$project"] . "\t";
+	$wgRC2UDPPrefix = $p_irc_feed["$code.$project"] . "\t";
 }
 
 
