@@ -118,9 +118,6 @@ $wgShowIPinHeader = false;
 $wgJobRunRate = 0;	# Lower probability of running through queue; replace later with cronjob?
 
 
-# Lets add our private config!
-require_once("/var/mwconfig/private.php");
-
 ## Shared memory settings
 #$wgMainCacheType = CACHE_MEMCACHED;
 #$wgMemCachedServers = array( "127.0.0.1:11211" );
@@ -306,6 +303,9 @@ RandomInCategory
 TorBlock
 
 */
+
+# Lets add our private config!
+require_once("/var/mwconfig/private.php");
 
 # Specific settings for different projects
 require_once( "/var/mwconfig/ProjectSettings.php" );
