@@ -44,7 +44,7 @@ if ( in_array( $projectDomain, array_keys( $projectList ) ) ) {
 }
 
 # Set language
-$validCodes = array_keys( Language::getLanguageNames() );
+$validCodes = array_keys( Language::fetchLanguageNames() );
 if ( in_array( $code, $validCodes ) ) {
 	$wgLanguageCode = "$code";
 } else {
