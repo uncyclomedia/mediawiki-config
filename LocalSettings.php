@@ -276,6 +276,8 @@ require_once( "$IP/extensions/OpenGraphMeta/OpenGraphMeta.php" );
 require_once( "$IP/extensions/wikihiero/wikihiero.php" );
 require_once( "$IP/extensions/YouTube/YouTube.php" );
 require_once( "$IP/extensions/SpamBlacklist/SpamBlacklist.php" );
+	$wgLogSpamBlacklistHits = true;
+	$wgGroupPermissions['sysadmin']['spamblacklistlog'] = true;
 require_once( "$IP/extensions/ApiSandbox/ApiSandbox.php" );
 require_once( "$IP/extensions/AssertEdit/AssertEdit.php" );
 require_once( "$IP/extensions/Disambiguator/Disambiguator.php" );
