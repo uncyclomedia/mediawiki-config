@@ -48,7 +48,7 @@ $p_private = array(
 	'cabal.uncyclomedia'
 );
 
-# Projects using carlb's Commons as a file repository
+# Projects using a clone of carlb's Commons as a file repository
 $p_repo_uncommons = array(
 	'en.illogicopedia',
 	'cabal.uncyclomedia'
@@ -135,6 +135,7 @@ if ( in_array( "$code.$project", $p_private ) ) {
 
 # UnCommons?
 if ( in_array( "$code.$project", $p_repo_uncommons ) ) {
+	/*
 	$wgForeignFileRepos[] = array(
 		'class'            => 'ForeignDBRepo',
 		'name'             => 'uncyclomediacommons',
@@ -152,7 +153,19 @@ if ( in_array( "$code.$project", $p_repo_uncommons ) ) {
 		'descBaseUrl'      => 'http://commons.uncyclomedia.co/wiki/File:',
 		'fetchDescription' => true
 	);
+	*/
+	$wgForeignFileRepos[] = array(
+		'class'                   => 'ForeignAPIRepo',
+		'name'                    => 'uncyclomediacommons',
+		'apibase'                 => 'http://commons.uncyclomedia.co/w/api.php',
+		'hashLevels'              => 2,
+		'fetchDescription'        => true,
+		'descriptionCacheExpiry'  => 604800,
+		'apiThumbCacheExpiry'     => 604800,
+	);
 }
+
+
 
 # Commons?
 if ( in_array( "$code.$project", $p_repo_commons ) ) {
