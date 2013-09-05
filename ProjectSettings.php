@@ -154,6 +154,7 @@ if ( in_array( "$code.$project", $p_repo_uncommons ) ) {
 		'fetchDescription' => true
 	);
 	*/
+	// Use foreignAPIrepo for now because inkscape doesn't seem to like the foreignDBrepo.
 	$wgForeignFileRepos[] = array(
 		'class'                   => 'ForeignAPIRepo',
 		'name'                    => 'uncyclomediacommons',
