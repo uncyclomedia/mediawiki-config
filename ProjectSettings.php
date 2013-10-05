@@ -25,6 +25,7 @@ $p_SVG_handler = array(
 	'test.uncyclopedia' => 'inkscape',
 	'cabal.uncyclomedia' => 'inkscape',
 	'commons.uncyclomedia' => 'inkscape',
+	'en.illogicopedia' => 'inkscape',
 );
 
 # Patrolling options to enable
@@ -59,6 +60,7 @@ $p_repo_commons = array(
 	'cabal.uncyclomedia',
 	'en.uncyclopedia',
 	'test.uncyclopedia',
+	'en.illogicopedia',
 );
 
 # Projects using MediaWikiAuth
@@ -100,12 +102,14 @@ if ( in_array( "$code.$project", array_keys( $p_SVG_handler ) ) ) {
 	if ( $p_SVG_handler["$code.$project"] == 'inkscape' ) {
 		$wgSVGConverter = 'inkscape';
 		# Because inkscape is fat
-		$wgMaxShellMemory = 517000;
+		# $wgMaxShellMemory = 517000;
 	} else {
 		# No specific handling for others as none are actually set up
 		$wgSVGConverter = $p_SVG_handler["$code.$project"];
 	}
 }
+# Move $wgMaxShellMemory out of if because off imagemagick
+$wgMaxShellMemory = 517000;
 
 # Patrolling?
 $wgUseRCPatrol = false;
@@ -481,20 +485,42 @@ if ( "$code.$project" == 'test2.uncyclopedia' ) {
 
 else if ( "$code.$project" == 'en.illogicopedia' ) {
 
-	require_once( "$IP/extensions/RandomSelection/RandomSelection.php" );
+	$wgGroupPermissions['phantom']['rollback'] = true;
+	$wgGroupPermissions['phantom']['autopatrol'] = true;
+	$wgGroupPermissions['phantom']['patrol'] = true;
+	$wgGroupPermissions['phantom']['suppressredirect'] = true;
 
-	require_once( "$IP/extensions/DynamicPageList/DynamicPageList2.php" );
-		ExtDynamicPageList::setFunctionalRichness(2);
+	$wgAddGroups['bureaucrat'][] = 'phantom';
+	$wgRemoveGroups['bureaucrat'][] = 'phantom';
+	$wgAddGroups['sysop'] = array( 'phantom' );
+	$wgRemoveGroups['sysop'] = array( 'phantom' );
+
+	# $wgGroupPermissions['*']['createaccount'] = true;
+	# $wgGroupPermissions['*']['edit'] = true;
+
+	require_once( "$IP/extensions/RandomSelection/RandomSelection.php" );
 	require_once( "$IP/extensions/CSS/CSS.php" );
 	require_once( "$IP/extensions/PageCSS/PageCSS.php" );
-	#require_once( "$IP/extensions/RSSold/RSS.php" );
-	#	$wgRSSAllowLinkTag = true;
-	#	$wgAllowImageTag = true;
-
 	require_once( "$IP/extensions/CharInsert/CharInsert.php" );
-	# require_once( "$IP/extensions/RawMsg/RawMsg.php" );
 	require_once( "$IP/extensions/Variables/Variables.php" );
 
+	if( !isset( $wgMaintenanceScriptHurr ) ) {
+		require_once( "$IP/extensions/DPLforum/DPLforum.php" );
+		require_once( "$IP/extensions/InputBox/InputBox.php" );
+		require_once( "$IP/extensions/MobileFrontend/MobileFrontend.php" );
+		require_once( "$IP/extensions/AJAXPoll/AJAXPoll.php" );
+		require_once( "$IP/extensions/PostEdit/PostEdit.php" );
+		require_once( "$IP/extensions/DynamicPageList/DynamicPageList.php" );
+		ExtDynamicPageList::setFunctionalRichness( 3 );
+		require_once( "$IP/extensions/RSS/RSS.php" );
+		$wgRSSUrlWhitelist = array(
+			"http://blog.illogicopedia.org/feeds/posts/default?alt=rss",
+			"http://blog.illogicopedia.org/feeds/posts/default?alt=rss|max=3"
+		);
+		$wgRSSAllowLinkTag = true;
+		$wgRSSAllowImageTag = true;
+		require_once( "$IP/extensions/Contributors/Contributors.php" );
+	}
 
 	$wgExtraNamespaces[100] = "IllogiBooks";
 	$wgExtraNamespaces[101] = "IllogiBooks_talk";
@@ -518,6 +544,21 @@ else if ( "$code.$project" == 'en.illogicopedia' ) {
 	$wgExtraNamespaces[121] = "HowTo_talk";
 	$wgExtraNamespaces[150] = "tlh";
 	$wgExtraNamespaces[151] = "tlh_talk";
+
+	$wgNamespaceLogos = array(
+		110 => 'http://images.uncyclomedia.co/illogicopedia/en/5/59/Forum_logo.png',
+		111 => 'http://images.uncyclomedia.co/illogicopedia/en/5/59/Forum_logo.png',
+		114 => 'http://images.uncyclomedia.co/illogicopedia/en/5/5d/Illoginews_prototype_logo.png',
+		115 => 'http://images.uncyclomedia.co/illogicopedia/en/5/5d/Illoginews_prototype_logo.png',
+		150 => 'http://images.uncyclomedia.co/illogicopedia/en/8/89/Free_bloodwine.png/120px-Free_bloodwine.png',
+		151 => 'http://images.uncyclomedia.co/illogicopedia/en/8/89/Free_bloodwine.png/120px-Free_bloodwine.png'
+	);
+
+	$wgContentNamespaces = array_merge(
+		$wgContentNamespaces,
+		array( 100, 102, 104, 114, 120 )
+	);
+
 }
 
 # For the Cabal

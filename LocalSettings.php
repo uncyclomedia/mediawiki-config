@@ -134,8 +134,7 @@ $wgFileCacheDirectory = "$wgCacheDirectory/files";
 $wgEnableUploads  = true;
 $wgUseImageMagick = true;
 $wgFileExtensions = array( 'png', 'gif', 'jpg', 'jpeg', 'svg', 'ico', 'ogg', 'mp3', 'swf', 'xcf', 'psd', 'pdf', 'tiff' );
-$wgImageMagickConvertCommand = "/usr/bin/convert";
-#$wgImageMagickConvertCommand = "/usr/local/bin/convert";
+$wgImageMagickConvertCommand = "/opt/imagemagick-6.8/bin/convert";
 # Limit image sizes
 $wgMaxAnimatedGifArea = 1.25e7;
 $wgMaxImageArea = 1.25e7;
@@ -287,6 +286,7 @@ require_once( "$IP/extensions/Scribunto/Scribunto.php" );
 	$wgScribuntoDefaultEngine = 'luastandalone';
 	$wgScribuntoUseGeSHi = true;
 	$wgScribuntoUseCodeEditor = true;
+require_once( "$IP/extensions/CanonURL/CanonURL.php" );
 
 #require_once( "$IP/extensions/MultiUpload/MultiUpload.php" );
 
