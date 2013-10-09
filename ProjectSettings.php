@@ -586,7 +586,8 @@ else if ( "$code.$project" == 'cabal.uncyclomedia' ) {
 $p_irc_feed = array(
 	// Project name => channel name
 	"en.uncyclopedia" => "#uncyclopedia-rc-en",
-	"test.uncyclopedia" => "#uncyclopedia-rc-test"
+	"test.uncyclopedia" => "#uncyclopedia-rc-test",
+	"en.illogicopedia" => "#illogicopedia-rc-en",
 );
 
 if ( in_array( "$code.$project", array_keys( $p_irc_feed ) ) ) {
