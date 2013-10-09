@@ -42,7 +42,6 @@ $p_skin = array(
 
 # Private projects - restricted access, read and write
 $p_private = array(
-	'en.illogicopedia',
 	'test1.uncyclopedia',
 	'test2.uncyclopedia',
 	'test3.uncyclopedia',
@@ -79,8 +78,8 @@ $p_mediawikiauth = array(
 		'http://uncyclopedia.wikia.com/wiki/Special:Preferences'
 	),
 	'test1.uncyclopedia' => array(
-		'http://uncyclopedia.wikia.com/api.php',
-		'http://uncyclopedia.wikia.com/wiki/Special:Preferences'
+		'http://illogicopedia.com/api.php',
+		'http://illogicopedia.com/wiki/Special:Preferences'
 	)
 );
 
@@ -268,6 +267,7 @@ $wgGroupPermissions['sysadmin']['nuke'] = true;
 $wgGroupPermissions['sysadmin']['protect'] = true;
 $wgGroupPermissions['sysadmin']['block'] = true;
 $wgGroupPermissions['sysadmin']['mergehistory'] = true;
+$wgGroupPermissions['sysadmin']['abusefilter-modify-global'] = true;
 
 $wgGroupPermissions['sysop']['bigdelete'] = false;
 
@@ -415,19 +415,8 @@ if ( "$code.$project" == "en.uncyclopedia" || "$code.$project" == "test.uncyclop
 		array( 102, 104, 112, 114, 116, 118, 120, 122, 124, 126, 128, 130 )
 	);
 
-	# CentralNotice stuff, based out of en.uncy for now
-	# Sort out which stuff to move to global later
-	require_once( "$IP/extensions/CentralNotice/CentralNotice.php" );
+	/* CentralNotice stuff */
 	$wgNoticeProject = 'uncyclopedia';
-	$wgNoticeProjects = array(
-		'uncyclopedia',
-		'test'
-	);
-	$wgNoticeEnableFundraising = false;
-	$wgNoticeReporterDomains = '';
-	$wgNoticeNumberOfBuckets = 2;
-	$wgCentralBannerDispatcher = "/wiki/Special:BannerRandom";
-	$wgCentralBannerRecorder = "/wiki/Special:RecordImpression";
 }
 
 # For test wiki
@@ -468,22 +457,22 @@ if ( "$code.$project" == 'test.uncyclopedia' ) {
 	);
 
 	/* CentralNotice stuff */
-	require_once( "$IP/extensions/CentralNotice/CentralNotice.php" );
 	$wgNoticeProject = 'test';
-	$wgNoticeInfrastructure = false;
-	$wgCentralDBname = 'uncy_en';
 }
 
-# For test2
+# For test1
 
-if ( "$code.$project" == 'test2.uncyclopedia' ) {
+if ( "$code.$project" == 'test1.uncyclopedia' ) {
 	$wgGroupPermissions['*']['createaccount'] = true;
-
 }
 
 # For Illogicopedia
 
 else if ( "$code.$project" == 'en.illogicopedia' ) {
+
+
+	$wgGroupPermissions['*']['createaccount'] = true;
+	$wgGroupPermissions['*']['edit'] = true;
 
 	$wgGroupPermissions['phantom']['rollback'] = true;
 	$wgGroupPermissions['phantom']['autopatrol'] = true;
@@ -550,8 +539,8 @@ else if ( "$code.$project" == 'en.illogicopedia' ) {
 		111 => 'http://images.uncyclomedia.co/illogicopedia/en/5/59/Forum_logo.png',
 		114 => 'http://images.uncyclomedia.co/illogicopedia/en/5/5d/Illoginews_prototype_logo.png',
 		115 => 'http://images.uncyclomedia.co/illogicopedia/en/5/5d/Illoginews_prototype_logo.png',
-		150 => 'http://images.uncyclomedia.co/illogicopedia/en/8/89/Free_bloodwine.png/120px-Free_bloodwine.png',
-		151 => 'http://images.uncyclomedia.co/illogicopedia/en/8/89/Free_bloodwine.png/120px-Free_bloodwine.png'
+		150 => 'http://images.uncyclomedia.co/illogicopedia/en/thumb/8/89/Free_bloodwine.png/120px-Free_bloodwine.png',
+		151 => 'http://images.uncyclomedia.co/illogicopedia/en/thumb/8/89/Free_bloodwine.png/120px-Free_bloodwine.png'
 	);
 
 	$wgContentNamespaces = array_merge(
@@ -559,6 +548,33 @@ else if ( "$code.$project" == 'en.illogicopedia' ) {
 		array( 100, 102, 104, 114, 120 )
 	);
 
+	/* CentralNotice stuff */
+	$wgNoticeProject = 'illogicopedia';
+	$wgNoticeInfrastructure = false;
+}
+
+# For the stupid meta central thingy
+
+else if ( "$code.$project" == 'meta.uncyclomedia' ) {
+
+	# Global AbuseFilter hub
+	$wgAbuseFilterIsCentral = true;
+	$wgGroupPermissions['sysop']['abusefilter-modify-global'] = true;
+
+	# CentralNotice hub
+	$wgNoticeProjects = array(
+		'uncyclopedia',
+		'test',
+		'meta',
+		'illogicopedia'
+	);
+	$wgNoticeInfrastructure = true;
+	$wgNoticeProject = 'meta';
+	$wgNoticeEnableFundraising = false;
+	$wgNoticeReporterDomains = '';
+	$wgNoticeNumberOfBuckets = 2;
+	$wgCentralBannerDispatcher = "/wiki/Special:BannerRandom";
+	$wgCentralBannerRecorder = "/wiki/Special:RecordImpression";
 }
 
 # For the Cabal
