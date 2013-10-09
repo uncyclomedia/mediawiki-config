@@ -40,7 +40,7 @@ if ( in_array( $projectDomain, array_keys( $projectList ) ) ) {
 	$project = $projectList[$projectDomain][1];
 	$projectName = $projectList[$projectDomain][2];
 } else {
-	die( 'Invalid project.<br/><br/>Default handling has not been enabled.' );
+	die( header('Location: http://uncyclomedia.co/wiki/') );
 }
 
 # Set language
@@ -117,6 +117,23 @@ $wgDisableCounters = true;
 $wgShowIPinHeader = false;
 $wgJobRunRate = 0;	# Lower probability of running through queue; replace later with cronjob?
 
+/*
+# Gross stuff for dumb stuff on top of our existing stuff (for centralauth or something?)
+$wgConf = new SiteConfiguration;
+$wgConf->wikis = $projectDatabases;
+$wgConf->localVHosts = array( 'localhost' ); # Database servers
+$wgConf->fullLoadCallback = 'wmfLoadInitialiseSettings';
+$wgConf->siteParamsCallback = 'efGetSiteParams';
+$wgConf->extractAllGlobals( $wgDBname );
+$wgConf->settings = array(
+	'wgServer' => array(
+		'default' => 'http://uncyclomedia.co',
+		'' =>
+	),
+);
+
+...someone else can deal with this crap.
+*/
 
 ## Shared memory settings
 #$wgMainCacheType = CACHE_MEMCACHED;
@@ -231,6 +248,7 @@ require_once( "$IP/extensions/AbuseFilter/AbuseFilter.php" );
 	$wgGroupPermissions['sysop']['abusefilter-revert'] = true;
 	$wgAbuseFilterEmergencyDisableThreshold['default'] = 0.10;
 	$wgAbuseFilterNotifications = "udp";
+	$wgAbuseFilterCentralDB = 'uncm_meta';
 require_once( "$IP/extensions/AntiSpoof/AntiSpoof.php" );
 require_once( "$IP/extensions/CategoryTree/CategoryTree.php" );
 require_once( "$IP/extensions/CheckUser/CheckUser.php" );
@@ -287,8 +305,17 @@ require_once( "$IP/extensions/Scribunto/Scribunto.php" );
 	$wgScribuntoUseGeSHi = true;
 	$wgScribuntoUseCodeEditor = true;
 require_once( "$IP/extensions/CanonURL/CanonURL.php" );
-
-#require_once( "$IP/extensions/MultiUpload/MultiUpload.php" );
+require_once( "$IP/extensions/InterwikiMagic/InterwikiMagic.php" );
+	$wgGlobalIWDBname = 'uncm_meta';
+require_once( "$IP/extensions/CentralNotice/CentralNotice.php" );
+	$wgCentralDBname = 'uncm_meta';
+	$wgNoticeInfrastructure = false;
+	# Fix these later; hardcoding bad BAD BAD EAT YOUR FACE
+	$wgCentralHost = '//uncyclomedia.co';
+	$wgCentralPagePath = '//uncyclomedia.co/w/index.php';
+	$wgCentralBannerDispatcher = "//uncyclomedia.co/wiki/Special:BannerRandom";
+	$wgCentralBannerRecorder = "//uncyclomedia.co/wiki/Special:RecordImpression";
+#require_once ("$IP/extensions/CentralAuth/CentralAuth.php");
 
 /*
 Others to install:
@@ -349,7 +376,7 @@ $wgRateLimitLog = '/var/ratelimit.log';
 
 # Unfortunate 1.20.0 thing
 $wgCleanupPresentationalAttributes = false;
-//$wgDebugLogFile ="wtf.log";
+$wgDebugLogFile ="wtf.log";
 
 //$wgCustomConvertCommand = "/usr/loca/bin/convert -resize %wx%h %s %d";
 

@@ -3,7 +3,7 @@
 # domain => code, project, projectname[, prefix]
 
 $projectList = array (
-	
+
 	'en.uncyclopedia.co' => array ( 'en', 'uncyclopedia', 'Uncyclopedia', 'uncy' ),
 //	'en.uncyclomedia.co' => array ( 'en', 'uncyclopedia', 'Uncyclopedia', 'uncy' ),  //Redirected to en.uncyclopedia.co via Apache --Emu
 	'test.uncyclopedia.co' => array ( 'test', 'uncyclopedia', 'Uncyclopedia test wiki', 'uncy' ),
@@ -11,19 +11,20 @@ $projectList = array (
 	'test2.uncyclopedia.co' => array ( 'test2', 'uncyclopedia', 'Uncyclopedia test II', 'uncy' ),
 	'test3.uncyclopedia.co' => array ( 'test3', 'uncyclopedia', 'Uncyclopedia test III', 'uncy' ),
 
-	'illogia.uncyclomedia.co' => array ( 'en', 'illogicopedia', 'Illogicopedia', 'illg' ),	# 'en.illogicopedia.org'
+	'illogia.uncyclomedia.co' => array ( 'en', 'illogicopedia', 'Illogicopedia', 'illg' ),	# Remove after move is verified
+	'en.illogicopedia.org' => array ( 'en', 'illogicopedia', 'Illogicopedia', 'illg' ),
 
 	'cabal.uncyclomedia.co' => array ( 'cabal', 'uncyclomedia', 'The Cabal', 'uncm' ),
-	'commons.uncyclomedia.co' => array ( 'commons', 'uncyclomedia', 'Uncyclomedia Commons', 'uncm' ), 
-	'meta.uncyclomedia.co' => array ( 'meta', 'uncyclomedia', 'UnMeta Wiki', 'uncm' ),
+	'commons.uncyclomedia.co' => array ( 'commons', 'uncyclomedia', 'Uncyclomedia Commons', 'uncm' ),
+	'uncyclomedia.co' => array ( 'meta', 'uncyclomedia', 'Uncyclomedia', 'uncm' ),
 
 	# Empty wiki for a template for maintenance and upgrades; not a reachable project
-	# base.sql dumps are generated from this
+	# base.sql/template.sql dumps are generated from this
 	'template.uncyclomedia.co' => array ( 'template', 'uncyclomedia', 'Uncyclomedia template', 'uncm' )
 );
 
-# Not used.
-$projectDatabases = array(	
+# Need to automatically fill this.
+$projectDatabases = array(
 	'uncy_en',
 	'uncy_test',
 	'uncy_test1',
@@ -34,12 +35,13 @@ $projectDatabases = array(
 
 	'uncm_cabal',
 	'uncm_commons',
+	'uncm_meta',
 
 	'uncm_template'
 );
 
 # Not used.
-$projectCodes = array(	
+$projectCodes = array(
 	'en.illogicopedia',
 	'en.uncyclopedia',
 	'test.uncyclopedia',
